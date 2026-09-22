@@ -1,0 +1,61 @@
+import { useEffect, useState } from "react";
+import { FaStar } from "react-icons/fa";
+import { FileOrFolderItem } from "../Component/Directory/Directory";
+import FilesAndFolders from "../Component/Files and Folders/FilesAndFolders";
+import { useUserContext } from "../Context Api/UserContext";
+import axios from "axios";
+
+function StarredFiles() {
+  const [data, setData] = useState<FileOrFolderItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const { userName } = useUserContext();
+<<<<<<< HEAD
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+=======
+  const API = import.meta.env.VITE_API_URL;
+>>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
+
+  useEffect(() => {
+    if (!userName) return;
+
+    const fetchData = async () => {
+      try {
+<<<<<<< HEAD
+        const response = await axios.get(`${API_BASE_URL}/starred/${userName}`, { withCredentials: true });
+=======
+        const response = await axios.get(`${API}/api/starred/${userName}`);
+>>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
+        const { success, data } = response.data;
+        if (success) {
+          setData(data);
+        }
+      } catch (error) {
+        console.error("Error fetching starred files:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [userName]);
+
+  return (
+    <div className="p-9 max-w-6xl mx-auto">
+      <div className="mb-4 flex items-center gap-3">
+        <FaStar className="text-yellow-500 text-3xl" />
+        <h2 className="text-3xl font-semibold text-gray-800">Starred</h2>
+      </div>
+      <hr className="mb-1 border-gray-300" />
+
+      {loading ? (
+        <div className="text-gray-500 text-center mt-10">Loading starred files...</div>
+      ) : data.length === 0 ? (
+        <p className="text-center text-gray-500 text-lg mt-10">No starred files found.</p>
+      ) : (
+        <FilesAndFolders data={data} setData={setData} />
+      )}
+    </div>
+  );
+}
+
+export default StarredFiles;

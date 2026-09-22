@@ -1,0 +1,56 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.production.local
+
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Production
+/build
+/dist
+
+# Misc
+.DS_Store
+.AppleDouble
+.AppleDB
+._*
+.ntvs_analysis_dat
+*.njsproj
+*.sln
+*.sw?
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# IDE
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS
+Thumbs.db
+
+# Project specific
+.python-version
+venv/
+env/
+
+# AWS credentials
+~/.aws/credentials
+~/.aws/config
+Backend/.env 
