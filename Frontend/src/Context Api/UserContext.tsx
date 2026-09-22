@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { createContext, useState, ReactNode, useContext, useEffect } from "react";
-=======
-import { createContext, useState, ReactNode, useContext } from "react";
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
 
 // Define the shape of the context
 interface UserContextType {
@@ -20,7 +16,6 @@ interface UserProviderProps {
 
 // The actual provider
 const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
-<<<<<<< HEAD
   const [userName, setUserName] = useState<string | null>(() => {
     return localStorage.getItem("userName");
   });
@@ -32,9 +27,6 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
       localStorage.removeItem("userName");
     }
   }, [userName]);
-=======
-  const [userName, setUserName] = useState<string | null>(null);
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
 
   return (
     <UserContext.Provider value={{ userName, setUserName }}>

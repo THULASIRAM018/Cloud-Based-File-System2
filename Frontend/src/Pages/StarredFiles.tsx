@@ -9,22 +9,14 @@ function StarredFiles() {
   const [data, setData] = useState<FileOrFolderItem[]>([]);
   const [loading, setLoading] = useState(true);
   const { userName } = useUserContext();
-<<<<<<< HEAD
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
-=======
-  const API = import.meta.env.VITE_API_URL;
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
 
   useEffect(() => {
     if (!userName) return;
 
     const fetchData = async () => {
       try {
-<<<<<<< HEAD
         const response = await axios.get(`${API_BASE_URL}/starred/${userName}`, { withCredentials: true });
-=======
-        const response = await axios.get(`${API}/api/starred/${userName}`);
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
         const { success, data } = response.data;
         if (success) {
           setData(data);

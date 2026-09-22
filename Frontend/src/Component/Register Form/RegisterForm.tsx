@@ -8,12 +8,8 @@ function RegisterForm() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
-<<<<<<< HEAD
   // Use VITE_API_BASE_URL or fallback to localhost:5000
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
-=======
-  const API = import.meta.env.VITE_API_URL;
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,22 +17,10 @@ function RegisterForm() {
       setError("Please fill all fields");
       return;
     }
-<<<<<<< HEAD
     try {
       const response = await axios.post(
         `${API_BASE_URL}/signup`,
         { userName: name, password, email },
-=======
-    const formData = new FormData();
-    formData.append("userName", name);
-    formData.append("password", password);
-    formData.append("email", email);
-
-    try {
-      const response = await axios.post(
-        `${API}/api/auth/register`,
-        formData,
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
         {
           headers: {
             "Content-Type": "application/json",
