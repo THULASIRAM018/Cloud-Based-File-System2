@@ -1,11 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import image from "../../assets/home.svg";
 import './style.css'
-<<<<<<< HEAD
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
-const pathUrl = location.pathname;
-=======
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
 function HomeContent() {
     const navigate=useNavigate()
   return (

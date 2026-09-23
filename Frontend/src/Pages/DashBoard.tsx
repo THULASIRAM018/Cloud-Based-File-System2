@@ -9,20 +9,12 @@ function DashBoard() {
   const location = useLocation();
   const { userName } = useUserContext();
   const [size,setSize]=useState<number>(0)
-<<<<<<< HEAD
-  const SERVER_URL=import.meta.env.VITE_SERVER_URL
-=======
   const API = import.meta.env.VITE_API_URL;
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
   
 
   const getFolderSize = async () => {
     try {
-<<<<<<< HEAD
-      const response = await axios.get(`${SERVER_URL}/folder/size/${userName}`);
-=======
       const response = await axios.get(`${API}/api/folder/size/${userName}`);
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
       const { success, size} = response.data; //{userName: 'Mohammed Ayad', iat: 1745051772, exp: 1745483772}
       if (success) {
         setSize(size)

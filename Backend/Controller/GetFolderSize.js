@@ -2,10 +2,6 @@ const { ListObjectsV2Command, S3Client } = require("@aws-sdk/client-s3");
 
 const s3Client = new S3Client({
   region: process.env.REGION,
-<<<<<<< HEAD
-  endpoint: `https://s3.${process.env.REGION}.amazonaws.com`,
-=======
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
   credentials: {
     accessKeyId: process.env.ACCESS_KEY,
     secretAccessKey: process.env.ACCESS_SECRET,

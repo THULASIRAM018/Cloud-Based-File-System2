@@ -18,10 +18,6 @@ const pipeline = promisify(stream.pipeline);
 
 const s3Client = new S3Client({
   region: process.env.REGION,
-<<<<<<< HEAD
-  endpoint: `https://s3.${process.env.REGION}.amazonaws.com`,
-=======
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
   credentials: {
     accessKeyId: process.env.ACCESS_KEY,
     secretAccessKey: process.env.ACCESS_SECRET,
@@ -49,12 +45,6 @@ const FileUpload = async (req, res) => {
       });
     }
 
-<<<<<<< HEAD
-    const folderSizeMB = await fetchFolderSize(userName);
-    const fileSizeMB = file.size / (1024 * 1024);
-
-    if (folderSizeMB + fileSizeMB >= 100) {
-=======
     const folderSizeMB = await fetchFolderSize(userName); // Ensure you await async call
 
     const fileSizeMB = file.size / (1024 * 1024); // Convert file size from bytes to MB
@@ -66,38 +56,19 @@ const FileUpload = async (req, res) => {
       });
 
       await s3Client.send(deleteCommand);
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
       return res.status(409).json({
         message: "Upload exceeds 100 MB limit.",
         success: false,
       });
     }
 
-<<<<<<< HEAD
-    // Upload file to S3 using Upload from @aws-sdk/lib-storage
-    const uploadToS3 = require("../lib-storage-upload");
-    await uploadToS3({
-      client: s3Client,
-      params: {
-        Bucket: BUCKET_NAME,
-        Key: `${folderPath}/${file.originalname}`,
-        ContentType: file.mimetype,
-      },
-  fileStream: file.buffer,
-    });
-
-=======
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
     const newFile = new DirectoryModel({
       name: file.originalname,
       path: `${folderPath}/${file.originalname}`,
       parentPath: folderPath,
       type: file.mimetype,
     });
-<<<<<<< HEAD
-=======
 
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
     await newFile.save();
 
     const updatedFolderData = await DirectoryModel.find({

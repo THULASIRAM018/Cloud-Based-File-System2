@@ -8,12 +8,7 @@ const {
 } = require("@aws-sdk/client-s3");
 
 const s3Client = new S3Client({
-<<<<<<< HEAD
-  region: 'ap-south-1',
-  endpoint: 'https://s3.ap-south-1.amazonaws.com',
-=======
   region: process.env.REGION,
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
   credentials: {
     accessKeyId: process.env.ACCESS_KEY,
     secretAccessKey: process.env.ACCESS_SECRET,

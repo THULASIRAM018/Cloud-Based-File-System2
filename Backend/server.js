@@ -1,50 +1,3 @@
-<<<<<<< HEAD
-const express = require('express');
-const cors = require('cors');
-const multer = require('multer');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const { configDotenv } = require('dotenv');
-const db = require('./db');
-
-configDotenv();
-
-const app = express();
-const PORT = process.env.PORT;
-
-app.use(cookieParser());
-app.use(cors({
-    origin: ["http://localhost:5173", "https://file-processing-system.onrender.com"],
-    credentials: true,
-    methods: ["GET", "POST", "PATCH", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"]
-}));
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Routes
-const router = require('./Routes/AuthRoutes');
-const fileRouter = require('./Routes/FileRoutes');
-const folderRouter = require('./Routes/FolderRoutes');
-const starredRouter = require('./Routes/StarredRoutes');
-
-app.use('/', router);
-app.use('/file', fileRouter);
-app.use('/folder', folderRouter);
-app.use('/starred', starredRouter);
-
-// Serve frontend build
-app.use(express.static(path.join(__dirname, "../Frontend/dist")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../Frontend/dist/index.html"));
-});
-
-// Start server
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server started on port ${PORT}`);
-});
-=======
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -55,6 +8,7 @@ const app = express();
 
 // Load environment variables
 configDotenv();
+const mongoUri = process.env.MONGO_CONN || process.env.MONGO_URI;
 
 // Middleware
 app.use(cors({
@@ -88,7 +42,11 @@ app.use((err, req, res, next) => {
 // Start server inside async function
 async function startServer() {
   try {
-    await mongoose.connect(process.env.MONGO_URI);
+    if (!mongoUri) {
+      throw new Error("Missing MongoDB connection string. Set MONGO_CONN or MONGO_URI in Backend/.env");
+    }
+
+    await mongoose.connect(mongoUri);
     console.log("MongoDB connected");
 
     const PORT = process.env.PORT || 5000;
@@ -101,4 +59,3 @@ async function startServer() {
 }
 
 startServer();
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e

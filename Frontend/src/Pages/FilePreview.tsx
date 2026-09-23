@@ -8,11 +8,7 @@ function FilePreview() {
   const navigate = useNavigate();
   const [fileUrl, setFileUrl] = useState("");
   const [fileType, setFileType] = useState("");
-<<<<<<< HEAD
-  const SERVER_URL=import.meta.env.VITE_SERVER_URL
-=======
   const API = import.meta.env.VITE_API_URL;
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
 
   const pathAfterDashboard = decodeURIComponent(
     location.pathname.replace(/^\/?preview\/?/, "")
@@ -22,11 +18,7 @@ function FilePreview() {
     const fetchSignedUrl = async () => {
       try {
         const res = await axios.get(
-<<<<<<< HEAD
-          `${SERVER_URL}/file/signed-url/${pathAfterDashboard}`
-=======
           `${API}/api/file/signed-url/${pathAfterDashboard}`
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
         );
         setFileUrl(res.data.url);        
         setFileType(pathAfterDashboard.split(".").pop()?.toLowerCase() || "");

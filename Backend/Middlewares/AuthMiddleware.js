@@ -58,32 +58,3 @@ const LoginValidation = (req, res, next) => {
 };
 
 module.exports = { SignUpValidation, LoginValidation };
-<<<<<<< HEAD
-
-// JWT verification middleware
-const jwt = require('jsonwebtoken');
-
-const JWTVerify = (req, res, next) => {
-    let token = req.cookies?.token;
-    if (!token && req.headers.authorization) {
-        const authHeader = req.headers.authorization;
-        if (authHeader.startsWith('Bearer ')) {
-            token = authHeader.substring(7);
-        }
-    }
-    if (!token) {
-        return res.status(401).json({ message: 'No token provided', success: false });
-    }
-    try {
-        const key = process.env.JWT_SECRET_KEY;
-        const decoded = jwt.verify(token, key);
-        req.user = decoded;
-        next();
-    } catch (err) {
-        return res.status(401).json({ message: 'Invalid or expired token', success: false });
-    }
-};
-
-module.exports.JWTVerify = JWTVerify;
-=======
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e

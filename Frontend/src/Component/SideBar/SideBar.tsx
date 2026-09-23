@@ -14,21 +14,13 @@ type SideBarProps = {
 
 function SideBar({ children }: SideBarProps) {
   const { userName, setUserName } = useUserContext();
-<<<<<<< HEAD
-  const SERVER_URL=import.meta.env.VITE_SERVER_URL
-=======
   const API = import.meta.env.VITE_API_URL;
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
   const navigate = useNavigate();
 
   useEffect(() => {
     const getUserDetails = async () => {
       try {
-<<<<<<< HEAD
-        const response = await axios.get(`${SERVER_URL}/verify-token`, {
-=======
         const response = await axios.get(`${API}/api/auth/verify-token`, {
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
           withCredentials: true,
         });
         const { success, user } = response.data; //{userName: 'Mohammed Ayad', iat: 1745051772, exp: 1745483772}
@@ -43,16 +35,6 @@ function SideBar({ children }: SideBarProps) {
   }, []);
   const SignOut = async () => {
     try {
-<<<<<<< HEAD
-      await axios.post(`${SERVER_URL}/logout`, {}, { withCredentials: true });
-    } catch (e) {
-      // Ignore errors, just clear session
-    }
-    document.cookie = 'token=; Max-Age=0; path=/;';
-    localStorage.clear();
-    sessionStorage.clear();
-    window.location.href = '/';
-=======
       const response = await axios.post(
         `${API}/api/auth/logout`,
         {},
@@ -72,7 +54,6 @@ function SideBar({ children }: SideBarProps) {
     } catch (error:any) {
       console.error(error);
     }
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
   };
   const [isOpen, setIsOpen] = useState(false);
   const sideItems = [
@@ -116,10 +97,7 @@ function SideBar({ children }: SideBarProps) {
           <div className="menu-items">
             {sideItems.map((item) => (
               <NavLink
-<<<<<<< HEAD
                 key={item.name}
-=======
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
                 to={item.path}
                 className={({ isActive }) =>
                   `link hover:bg-violet-950 ${

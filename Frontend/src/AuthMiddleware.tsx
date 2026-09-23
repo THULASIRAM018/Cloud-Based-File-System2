@@ -6,23 +6,11 @@ import Swal from "sweetalert2";
 
 export const ProtectedRoute = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
-<<<<<<< HEAD
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
-=======
   const API = import.meta.env.VITE_API_URL;
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
 
   useEffect(() => {
     const validate = async () => {
       try {
-<<<<<<< HEAD
-        const response = await axios.get(`${API_BASE_URL}/verify-token`, { withCredentials: true });
-        console.log("/verify-token response:", response.data);
-        const { success } = response.data;
-        setIsAuthenticated(success);
-      } catch (error) {
-        console.error("/verify-token error:", error);
-=======
         const response = await axios.get(`${API}/api/auth/verify-token`, {
           withCredentials: true,
         });
@@ -30,7 +18,6 @@ export const ProtectedRoute = () => {
         setIsAuthenticated(success);
       } catch (error) {
         console.error(error);
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
         setIsAuthenticated(false);
       }
     };

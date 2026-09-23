@@ -15,10 +15,6 @@ const StarredModel = require("../Models/StarredModel");
 
 const s3Client = new S3Client({
   region: process.env.REGION,
-<<<<<<< HEAD
-  endpoint: `https://s3.${process.env.REGION}.amazonaws.com`,
-=======
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
   credentials: {
     accessKeyId: process.env.ACCESS_KEY,
     secretAccessKey: process.env.ACCESS_SECRET,
@@ -79,25 +75,11 @@ const CreateFolder = async (req, res) => {
         .status(409)
         .json({ message: "Folder already exist", success: false });
     }
-<<<<<<< HEAD
-    // Use Upload from @aws-sdk/lib-storage for folder creation (empty object)
-    const uploadToS3 = require("../lib-storage-upload");
-    await uploadToS3({
-      client: s3Client,
-      params: {
-        Bucket: BUCKET_NAME,
-        Key: `${filePath}/`,
-        ContentType: "application/x-directory",
-      },
-      fileStream: Buffer.from("") // empty body for folder
-    });
-=======
     const command = new PutObjectCommand({
       Key: `${filePath}/`,
       Bucket: BUCKET_NAME,
     });
     await s3Client.send(command);
->>>>>>> 6eb3537716774b5c66c33e1c6c01c7b1552be89e
     const newFolder = new DirectoryModel({
       name: folderName,
       parentPath: folderPath,
