@@ -13,6 +13,8 @@ const mongoUri = process.env.MONGO_CONN || process.env.MONGO_URI;
 // Middleware
 app.use(cors({
   origin: [
+    "http://localhost:5173",
+    "http://localhost:3000",
     "https://cloud-based-file-system2.vercel.app",
     "https://cloud-based-file-system2-g1tr.vercel.app"
   ],
